@@ -1,11 +1,11 @@
 const expandMinute = (expr) => {
-  const min = 0;
-  const max = 59;
+  const minValue = 0;
+  const maxValue = 59;
   const numValues = 60;
 
   if (expr === "*") {
     const values = [];
-    for (let i = min; i <= max; i += 1) {
+    for (let i = minValue; i <= maxValue; i += 1) {
       values.push(i);
     }
     return values.join(" ");
@@ -15,7 +15,7 @@ const expandMinute = (expr) => {
     const [, stepStr] = expr.split("/");
     const step = parseInt(stepStr);
     const values = [];
-    for (let i = min; i <= max; i += step) {
+    for (let i = minValue; i <= maxValue; i += step) {
       values.push(i);
     }
     return values.join(" ");
@@ -30,11 +30,22 @@ const expandMinute = (expr) => {
     const [startStr, endStr] = expr.split("-");
     const start = parseInt(startStr);
     const end = parseInt(endStr);
+    if (start > end) {
+      return null;
+    }
+    if (end > maxValue) {
+      return null;
+    }
     const values = [];
     for (let i = start; i <= end; i += 1) {
       values.push(i);
     }
     return values.join(" ");
+  }
+
+  const literal = parseInt(expr);
+  if (literal > maxValue) {
+    return null;
   }
 
   return expr;
