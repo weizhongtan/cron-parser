@@ -1,4 +1,4 @@
-const { parse } = require("./parse");
+import { parse } from "./parse";
 
 test("parses `*/15 0 1,15 * 1-5 /usr/bin/find`", () => {
   expect(parse("*/15 0 1,15 * 1-5 /usr/bin/find")).toEqual({

@@ -1,4 +1,4 @@
-const { expandMinute } = require("./expand");
+import { expandMinute } from "./expand";
 
 describe("expandMinute", () => {
   const validCases = [

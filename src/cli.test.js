@@ -1,7 +1,7 @@
-const { cli } = require("./cli");
-const { parse } = require("./parse");
-const { expand } = require("./expand");
-const { buildTable } = require("./build-table");
+import { buildTable } from "./build-table";
+import { cli } from "./cli";
+import { expand } from "./expand";
+import { parse } from "./parse";
 
 jest.mock("./parse");
 jest.mock("./expand");

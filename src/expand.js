@@ -1,4 +1,4 @@
-const expandMinute = (expr) => {
+export const expandMinute = (expr) => {
   const minValue = 0;
   const maxValue = 59;
   const numValues = 60;
@@ -51,12 +51,9 @@ const expandMinute = (expr) => {
   return expr;
 };
 
-const expand = (fields) => {
+export const expand = (fields) => {
   const minuteExpansion = expandMinute(fields.minute);
   return {
     minute: minuteExpansion,
   };
 };
-
-exports.expandMinute = expandMinute;
-exports.expand = expand;

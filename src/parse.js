@@ -1,4 +1,4 @@
-const parse = (expression) => {
+export const parse = (expression) => {
   const [minute, hour, dayOfMonth, month, dayOfWeek, ...commandList] =
     expression.split(" ");
   return {
@@ -10,5 +10,3 @@ const parse = (expression) => {
     command: commandList.join(" "),
   };
 };
-
-exports.parse = parse;

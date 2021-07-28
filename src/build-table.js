@@ -1,5 +1,3 @@
-const buildTable = (input) => {
+export const buildTable = (input) => {
   return input;
 };
-
-exports.buildTable = buildTable;
