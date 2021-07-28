@@ -1,4 +1,5 @@
 const expandExpression = (expr, minValue, maxValue, numValues) => {
+  // any value
   if (expr === "*") {
     const values = [];
     for (let i = minValue; i <= maxValue; i += 1) {
@@ -7,9 +8,13 @@ const expandExpression = (expr, minValue, maxValue, numValues) => {
     return values.join(" ");
   }
 
+  // step value
   if (expr.includes("/")) {
-    const [, stepStr] = expr.split("/");
-    const step = parseInt(stepStr);
+    const [, stepRaw] = expr.split("/");
+    if (stepRaw.length === 0) {
+      return null;
+    }
+    const step = parseInt(stepRaw);
     const values = [];
     for (let i = minValue; i <= maxValue; i += 1) {
       if (i % step === 0) {
@@ -19,18 +24,27 @@ const expandExpression = (expr, minValue, maxValue, numValues) => {
     return values.join(" ");
   }
 
+  // list value
   if (expr.includes(",")) {
-    const values = expr.split(",");
-    if (values.map((val) => parseInt(val)).some((val) => val > maxValue)) {
+    const valuesRaw = expr.split(",");
+    if (valuesRaw.some((val) => val.length === 0)) {
+      return null;
+    }
+    const values = valuesRaw.map((val) => parseInt(val));
+    if (values.some((val) => val > maxValue)) {
       return null;
     }
     return values.join(" ");
   }
 
+  // range value
   if (expr.includes("-")) {
-    const [startStr, endStr] = expr.split("-");
-    const start = parseInt(startStr);
-    const end = parseInt(endStr);
+    const [startRaw, endRaw] = expr.split("-");
+    if (startRaw.length === 0 || endRaw.length === 0) {
+      return null;
+    }
+    const start = parseInt(startRaw);
+    const end = parseInt(endRaw);
     if (start > end) {
       return null;
     }
@@ -72,5 +86,6 @@ export const expand = (fields) => {
     dayOfMonth: expandDayOfMonth(fields.dayOfMonth),
     month: expandMonth(fields.month),
     dayOfWeek: expandDayOfWeek(fields.dayOfWeek),
+    command: fields.command,
   };
 };

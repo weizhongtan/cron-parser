@@ -136,6 +136,7 @@ describe("expand", () => {
       dayOfMonth: "1 15",
       month: "1 2 3 4 5 6 7 8 9 10 11 12",
       dayOfWeek: "1 2 3 4 5",
+      command: "/usr/bin/find",
     });
   });
 });
