@@ -1,8 +1,4 @@
-export const expandMinute = (expr) => {
-  const minValue = 0;
-  const maxValue = 59;
-  const numValues = 60;
-
+const expandExpression = (expr, minValue, maxValue, numValues) => {
   if (expr === "*") {
     const values = [];
     for (let i = minValue; i <= maxValue; i += 1) {
@@ -23,6 +19,9 @@ export const expandMinute = (expr) => {
 
   if (expr.includes(",")) {
     const values = expr.split(",");
+    if (values.map((val) => parseInt(val)).some((val) => val > maxValue)) {
+      return null;
+    }
     return values.join(" ");
   }
 
@@ -51,9 +50,13 @@ export const expandMinute = (expr) => {
   return expr;
 };
 
+export const expandMinute = (expr) => expandExpression(expr, 0, 59, 60);
+
+export const expandHour = (expr) => expandExpression(expr, 0, 23, 24);
+
 export const expand = (fields) => {
-  const minuteExpansion = expandMinute(fields.minute);
   return {
-    minute: minuteExpansion,
+    minute: expandMinute(fields.minute),
+    hour: expandHour(fields.hour),
   };
 };
