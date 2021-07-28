@@ -1,0 +1,25 @@
+{
+  "name": "cron-expression-parser",
+  "version": "1.0.0",
+  "description": "CLI to parse crontab",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "bin": {
+    "cron-parser": "bin/cron-parser"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weizhongtan/cron-expression-parser.git"
+  },
+  "author": "weizhongtan",
+  "bugs": {
+    "url": "https://github.com/weizhongtan/cron-expression-parser/issues"
+  },
+  "homepage": "https://github.com/weizhongtan/cron-expression-parser#readme",
+  "devDependencies": {
+    "jest": "^27.0.6",
+    "prettier": "2.3.2"
+  }
+}
